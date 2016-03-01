@@ -1,9 +1,33 @@
-<%@include file="../cabecalho.jsp"%>
-
+<%@page import="dao.PerguntaDAO"%>
+<%@page import="modelo.Pergunta"%>
+<%@include file="cabecalho-index.jsp"%>
+<%
+    if(request.getParameter("id") == null)
+    {
+      response.sendRedirect("item.jsp"); 
+      //para a execução aqui
+      return;
+    }
+     //Buscar o registro(professor) a partir da sua
+        //chave primária, nesse caso o SIAPE
+        String id = request.getParameter("id");
+        PerguntaDAO dao = new PerguntaDAO();
+        Pergunta obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
+        //verificar se o registro existe, se não existir, volta pra lista
+        if(obj==null)
+        {
+            response.sendRedirect("list.jsp");
+            return;
+            
+        }
+        
+    
+    
+%>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
     <div class="mdl-card mdl-cell mdl-cell--12-col">
         <div class="mdl-card__supporting-text">
-            <h4>Categoria - Atualizar</h4>
+            <h4>Pergunta - Atualizar</h4>
             <form action="upd-ok.jsp" method="post">
                 <!-- 
                     primeira div -- área que ocupará o campo de formulário

@@ -25,15 +25,15 @@
                 <thead>
                     <tr>
 
-                        <th>serial</th>
+                        
                         <th>nivel</th>
-                        <th>certa</th>
                         <th>enunciado</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>25</td>
+                        <td></td>
                         <td>Matemática</td>
                         <td>
                             <!-- 
