@@ -78,6 +78,9 @@ public class CategoriaDAO {
             em.close();
         }
     }
+public Categoria buscarPorChavePrimaria(Long id){
+        return em.find(Categoria.class, id);
+} 
 
     public void fechaEmf() {
         Conexao.closeConexao();
