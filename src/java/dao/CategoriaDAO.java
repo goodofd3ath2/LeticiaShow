@@ -40,12 +40,12 @@ public class CategoriaDAO {
     }
 
      public List<Categoria> listar() throws Exception {
-        return em.createNamedQuery("Item.findAll").getResultList();
+        return em.createNamedQuery("Categoria.findAll").getResultList();
     }
       public List<Categoria> listar(String nome) throws Exception {
         //passar o parâmetro pra query
          TypedQuery<Categoria> query = 
-                 em.createNamedQuery("Item.findByName", Categoria.class);
+                 em.createNamedQuery("Categoria.findByName", Categoria.class);
          
          //Seto o parâmetro
          query.setParameter("nome", '%' + nome + '%');

@@ -1,12 +1,13 @@
+<%@include file="../cabecalho.jsp"%>
 <%@page import="dao.CategoriaDAO"%>
 <%@page import="modelo.Categoria"%>
-<%@include file="cabecalho.jsp"%>
+
 
 
 <%
     if(request.getParameter("id") == null)
     {
-      response.sendRedirect("item.jsp"); 
+      response.sendRedirect("list.jsp"); 
       //para a execução aqui
       return;
     }
@@ -18,7 +19,7 @@
         //verificar se o registro existe, se não existir, volta pra lista
         if(obj==null)
         {
-            response.sendRedirect("item.jsp");
+            response.sendRedirect("list.jsp");
             return;
             
         }

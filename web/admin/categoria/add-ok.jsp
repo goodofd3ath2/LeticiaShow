@@ -1,7 +1,7 @@
-
+<%@include file="../cabecalho.jsp"%>
 <%@page import="dao.CategoriaDAO"%>
 <%@page import="modelo.Categoria"%>
-<%@include file="cabecalho.jsp"%>
+
 <%
     
   //Buscar as informações do Formulario

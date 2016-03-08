@@ -1,6 +1,5 @@
 <%@include file="../cabecalho.jsp"%>
 
-<%@include file="cabecalho.jsp"%>
 <%@page import="modelo.Jogador"%>
 <%@page import="dao.JogadorDAO"%>
 <%

@@ -10,7 +10,7 @@
 </style><%@page import="java.util.List"%>
 <%@page import="modelo.Jogador"%>
 <%@page import="dao.JogadorDAO"%>
-<%@include file="cabecalho.jsp"%>
+
 <%
     JogadorDAO dao = new JogadorDAO();
     List<Jogador> lista;

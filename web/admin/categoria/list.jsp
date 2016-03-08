@@ -1,7 +1,9 @@
+<%@include file="../cabecalho.jsp"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Categoria"%>
 <%@page import="dao.CategoriaDAO"%>
-<%@include file="cabecalho-index.jsp"%>
+
+
 <!-- gambiarra pra alinhar o botão a esquerda-->
 <style>
     .direita
@@ -54,8 +56,8 @@
                         <tr>
                             <td><%=que.getId()%></td>
                             <td><%=que.getNome()%></td>
-                            <td><a href="upd.jsp?codigo=<%=que.getId()%>">Editar</a>
-                                <a href="del-ok.jsp?codigo=<%=que.getId()%>">Excluir</a>
+                            <td><a href="upd.jsp?id=<%=que.getId()%>">Editar</a>
+                                <a href="del-ok.jsp?id=<%=que.getId()%>">Excluir</a>
                             </td>
                             
                         </tr>
