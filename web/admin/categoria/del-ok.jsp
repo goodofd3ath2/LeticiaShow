@@ -3,17 +3,17 @@
 <%@page import="dao.CategoriaDAO"%>
 <%
     String msg = "";
-    if(request.getParameter("codigo")==null)
+    if(request.getParameter("id")==null)
     {
-        response.sendRedirect("item.jsp");
+        response.sendRedirect("list.jsp");
     }
     else
     {
-        String codigo = request.getParameter("codigo");
+        String id = request.getParameter("id");
         
         CategoriaDAO dao = new CategoriaDAO();
         //buscar o registro pela chave primária
-        Categoria obj = dao.buscarPorChavePrimaria(Long.parseLong(codigo));
+        Categoria obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
         if(obj!=null)
         {
             dao.excluir(obj);
@@ -35,7 +35,7 @@
 
 
 
-</section>
+
 
 <%@include file="../rodape.jsp"%>
 

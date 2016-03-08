@@ -1,18 +1,34 @@
-<%@include file="../cabecalho.jsp"%>
 
-
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-    <div class="mdl-card mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text ">
-            <h4>Categoria - Cadastrar</h4>
-            <p>Categoria cadastrada com sucesso.</p>
-            <a href="list.jsp"><i class="material-icons">list</i></a>
+<%@page import="dao.CategoriaDAO"%>
+<%@page import="modelo.Categoria"%>
+<%@include file="cabecalho.jsp"%>
+<%
+    
+  //Buscar as informações do Formulario
+    String nome = request.getParameter("txtNome");
+    
+    Long id = Long.parseLong(request.getParameter("txtId"));
+    //Criar meu objeto modelo 
+    Categoria cat = new Categoria();
+    //Adiciono os valores enviados
+   cat.setNome(nome);
+   
+    
+    //Instanciar minha classe de acesso a dados
+    CategoriaDAO dao = new CategoriaDAO();
+    
+    dao.incluir(cat);
+%>
+         <h1 class="centro">Cadastro de Itens</h1>
             
-        </div>
+         <div>
+              Registro cadastrado com sucesso.<br />
+                Nome:<%=nome%><br />
+             <a href="list.jsp">Voltar para Listagem</a>
+         </div>    
 
-    </div>
 
-</section>
+
 
 <%@include file="../rodape.jsp"%>
 
