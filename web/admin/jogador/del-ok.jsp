@@ -1,18 +1,40 @@
 <%@include file="../cabecalho.jsp"%>
 
-
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-    <div class="mdl-card mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text ">
-            <h4>Jogador - Excluir</h4>
-            <p>Registro excluído com sucesso.</p>
-            <a href="list.jsp"><i class="material-icons">list</i></a>
+<%@include file="cabecalho.jsp"%>
+<%@page import="modelo.Jogador"%>
+<%@page import="dao.JogadorDAO"%>
+<%
+    String msg = "";
+    if(request.getParameter("id")==null)
+    {
+        response.sendRedirect("list.jsp");
+    }
+    else
+    {
+        String id = request.getParameter("id");
+        
+        JogadorDAO dao = new JogadorDAO();
+        //buscar o registro pela chave primária
+        Jogador obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
+        if(obj!=null)
+        {
+            dao.excluir(obj);
+            msg = "Registro excluído com sucesso";
+        }
+        else
+        {
+            msg = "Registro não encontrado. Verifique.";
+        }
+        
+    }
+%>
+         <h1 class="centro">Exclusão de Itens</h1>
             
-        </div>
-
-    </div>
-
-</section>
-
+         <div>
+             <%=msg%><br />
+             <a href="list.jsp">Voltar para Listagem</a>
+         </div>
+    </body>
+      
 <%@include file="../rodape.jsp"%>
 

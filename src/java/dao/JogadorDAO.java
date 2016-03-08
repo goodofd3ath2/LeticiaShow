@@ -83,6 +83,7 @@ public class JogadorDAO {
     public void fechaEmf() {
         Conexao.closeConexao();
     }
-    
-
+    public Jogador buscarPorChavePrimaria(Long id){
+        return em.find(Jogador.class, id);
+    }
 }
