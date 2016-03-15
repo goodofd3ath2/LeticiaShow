@@ -83,6 +83,8 @@ public class PerguntaDAO {
     public void fechaEmf() {
         Conexao.closeConexao();
     }
-    
+     public Pergunta buscarPorChavePrimaria(Long chave){
+        return em.find(Pergunta.class, chave);
+    }
 
 }
