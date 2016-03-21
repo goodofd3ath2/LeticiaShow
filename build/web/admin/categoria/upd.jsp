@@ -13,7 +13,7 @@
       return;
     }
      
-        Integer id = Integer.parseInt(request.getParameter("id"));
+        Integer id = Integer.parseInt(request.getParameter("txtId"));
         String nome = request.getParameter("txtNome");
         CategoriaDAO dao = new CategoriaDAO();
         Categoria obj = dao.buscarPorChavePrimaria(id);

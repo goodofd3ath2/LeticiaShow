@@ -13,7 +13,7 @@
      
        
         String nome = request.getParameter("txtNome");
-        Integer id = Integer.parseInt(request.getParameter("id"));
+        Integer id = Integer.parseInt(request.getParameter("txtId"));
          
         CategoriaDAO dao = new CategoriaDAO();
         Categoria obj = dao.buscarPorChavePrimaria(id);
@@ -28,7 +28,7 @@
     obj.setId(id);
     obj.setNome(nome);
     
-    obj.alterar(obj);
+    dao.alterar(obj);
     
 %>
         <div>
