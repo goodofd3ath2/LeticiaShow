@@ -5,18 +5,19 @@
 
 
 <%
+ 
     if(request.getParameter("id") == null)
     {
       response.sendRedirect("list.jsp"); 
-      //para a execução aqui
+     
       return;
     }
-     //Buscar o registro(professor) a partir da sua
-        //chave primária, nesse caso o SIAPE
-        String id = request.getParameter("id");
+     
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        String nome = request.getParameter("txtNome");
         CategoriaDAO dao = new CategoriaDAO();
-        Categoria obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
-        //verificar se o registro existe, se não existir, volta pra lista
+        Categoria obj = dao.buscarPorChavePrimaria(id);
+        
         if(obj==null)
         {
             response.sendRedirect("list.jsp");

@@ -78,7 +78,7 @@ public class CategoriaDAO {
             em.close();
         }
     }
-public Categoria buscarPorChavePrimaria(Long id){
+public Categoria buscarPorChavePrimaria(Integer id){
         return em.find(Categoria.class, id);
 } 
 
