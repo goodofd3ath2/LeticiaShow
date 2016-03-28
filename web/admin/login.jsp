@@ -16,8 +16,12 @@
       }
       else
       {
-          msg="Errou";
+          msg="Errou";                                                                                
       }
+    }
+    if(request.getParameter("sair")!=null)
+    {
+        session.setAttribute("usuarioAdmin",null);
     }
     %>
 <html lang="pt-br">

@@ -7,7 +7,9 @@
         <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Gerenciamento de Sistemas</title>
-
+            <div>
+              <p> Admin- <a href="login.jsp?sair=ok">Sair</a> </p>
+          </div>
         <!-- Add to homescreen for Chrome on Android -->
         <meta name="mobile-web-app-capable" content="yes">
         <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
@@ -42,6 +44,8 @@
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           <h3>Área Administrativa</h3>
+           
+          
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
@@ -49,7 +53,7 @@
           <a href="index.jsp" class="mdl-layout__tab">Inicial</a>
           <a href="categoria/list.jsp" class="mdl-layout__tab">Categoria</a>
           <a href="jogador/list.jsp" class="mdl-layout__tab">Jogador</a>
-          
+           
         </div>
       </header>
       <main class="mdl-layout__content">

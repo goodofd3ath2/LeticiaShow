@@ -96,6 +96,9 @@ if(session.getAttribute("usuarioAdmin") == null)
       out.write("        </div>\r\n");
       out.write("        <div class=\"mdl-layout--large-screen-only mdl-layout__header-row\">\r\n");
       out.write("        </div>\r\n");
+      out.write("          <div>\r\n");
+      out.write("                Admin-Sair\r\n");
+      out.write("          </div>\r\n");
       out.write("        <div class=\" mdl-js-ripple-effect mdl-color--primary-dark\">\r\n");
       out.write("          <a href=\"../index.jsp\" class=\"mdl-layout__tab\">Inicial</a>\r\n");
       out.write("          <a href=\"../categoria/list.jsp\" class=\"mdl-layout__tab\">Categoria</a>\r\n");
