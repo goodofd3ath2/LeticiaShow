@@ -38,7 +38,16 @@ public class JogadorDAO {
         }
         
     }
+    public Jogador realizarLogin(String login, String senha)
+    { 
+        TypedQuery<Jogador> query = 
+                em.createNamedQuery("Jogador.realizarLogin", Jogador.class);
+        query.setParameter("login", login);
+        query.setParameter("senha", senha);
+        
+        return query.getSingleResult();
 
+    }
      public List<Jogador> listar() throws Exception {
         return em.createNamedQuery("Item.findAll").getResultList();
     }
