@@ -45,7 +45,16 @@ public class JogadorDAO {
         query.setParameter("login", login);
         query.setParameter("senha", senha);
         
-        return query.getSingleResult();
+        Jogador jogador;
+        try
+        {
+            return query.getSingleResult();
+        } catch (Exception e){
+            jogador = null;
+        }
+        return jogador;
+        
+        //return query.getSingleResult();
 
     }
      public List<Jogador> listar() throws Exception {
