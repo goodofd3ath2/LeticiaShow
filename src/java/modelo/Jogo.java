@@ -57,6 +57,8 @@ public class Jogo {
     
     public Integer getErro()
     {
+       //se ele erra ele gaNHA METADE DO QUE ELE TEM
+        //SE ELE N TEM NADA OU SE VAI PRA 1000000 ELE N GANHA NADA SE ERRAr
         Integer erro = 0;
         return erro;
     }

@@ -8,6 +8,7 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import modelo.Ranking;
 
 /**
@@ -38,10 +39,19 @@ public class RankingDAO {
         
     }
 
-    public List<Ranking> listar() throws Exception {
+   public List<Ranking> listar() throws Exception {
         return em.createNamedQuery("Ranking.findAll").getResultList();
     }
-    
+      public List<Ranking> listar(String nome) throws Exception {
+        //passar o parâmetro pra query
+         TypedQuery<Ranking> query = 
+                 em.createNamedQuery("Pergunta.findByName", Ranking.class);
+         
+         //Seto o parâmetro
+         query.setParameter("nome", '%' + nome + '%');
+         //retorno minha lista
+         return query.getResultList();
+    }
     public void alterar(Ranking obj) throws Exception {
         
         try {
@@ -72,6 +82,8 @@ public class RankingDAO {
     public void fechaEmf() {
         Conexao.closeConexao();
     }
-    
+     public Ranking buscarPorChavePrimaria(Long id){
+        return em.find(Ranking.class, id);
+    }
 
 }

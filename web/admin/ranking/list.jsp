@@ -1,5 +1,24 @@
+<%@page import="modelo.Ranking"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.RankingDAO"%>
 <%@include file="../cabecalho.jsp"%>
-<!-- gambiarra pra alinhar o botão a esquerda-->
+<%
+RankingDAO dao = new RankingDAO();
+List<Ranking> lista;
+//Verificar se veio algo do filtro, 
+//se vier eu filtro pro nome
+//caso contrário eu trago todos os clientes
+if(request.getParameter("txtFiltro")!= null && request.getParameter("txtFiltro")!= "")
+{
+    String txtFiltro = request.getParameter("txtFiltro");
+     lista = dao.listar(txtFiltro);
+  
+}
+else
+{
+    lista = dao.listar();
+}
+%>
 <style>
     .direita
             {
@@ -30,16 +49,20 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
+                <%
+                        for(Ranking item:lista)
+                            {
+                    %>
                 <tbody>
                     <tr>
-                        <td>25</td>
-                        <td>Matemática</td>
+                        <td><%=item.getId()%></td>
+                        <td><%=item.getPontos()%></td>
                         <td>
                             <!-- 
                                 Atualizar 
                             -->
                             <div id="ttupd" class="icon material-icons">
-                                <i class="material-icons"><a href="upd.jsp">update</a></i>
+                                <i class="material-icons"><a href="upd.jsp?id=<%=item.getId()%>">update</a></i>
                             </div>
                             <div class="mdl-tooltip" for="ttupd">
                                 Atualizar
@@ -48,7 +71,7 @@
                                 Excluir 
                             -->
                             <div id="ttdel" class="icon material-icons">
-                                <i class="material-icons"><a href="del-ok.jsp">delete</a></i>
+                                <i class="material-icons"><a href="del-ok.jsp?id=<%=item.getId()%>">delete</a></i>
                             </div>
                             <div class="mdl-tooltip" for="ttdel">
                                 Excluir
@@ -57,63 +80,16 @@
                         </td>
                 
                     </tr>
-                    <tr>
-                        <td>32</td>
-                        <td>Física</td>
-                        <td>
-                            <!-- 
-                                Atualizar 
-                            -->
-                            <div id="ttupd" class="icon material-icons">
-                                <i class="material-icons"><a href="upd.jsp">update</a></i>
-                            </div>
-                            <div class="mdl-tooltip" for="ttupd">
-                                Atualizar
-                            </div>
-                            <!-- 
-                                Excluir 
-                            -->
-                            <div id="ttdel" class="icon material-icons">
-                                <i class="material-icons"><a href="del-ok.jsp">delete</a></i>
-                            </div>
-                            <div class="mdl-tooltip" for="ttdel">
-                                Excluir
-                            </div>
-                            
-                        </td>
-                
-                    </tr>
-                    <tr>
-                        <td>29</td>
-                        <td>Programação</td>
-                       <td>
-                            <!-- 
-                                Atualizar 
-                            -->
-                            <div id="ttupd" class="icon material-icons">
-                                <i class="material-icons"><a href="upd.jsp">update</a></i>
-                            </div>
-                            <div class="mdl-tooltip" for="ttupd">
-                                Atualizar
-                            </div>
-                            <!-- 
-                                Excluir 
-                            -->
-                            <div id="ttdel" class="icon material-icons">
-                                <i class="material-icons"><a href="del-ok.jsp">delete</a></i>
-                            </div>
-                            <div class="mdl-tooltip" for="ttdel">
-                                Excluir
-                            </div>
-                            
-                        </td>
-                
-                    </tr>
+                    
                 </tbody>
             </table>   
         </div>
 
     </div>
+                 
+                    <%
+                         }
+                     %>
 
 </section>
 

@@ -1,4 +1,5 @@
 
+<%@page import="modelo.Jogador"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.PerguntaDAO"%>
 <%@page import="modelo.Pergunta"%>
@@ -16,8 +17,9 @@ PerguntaDAO pergDAO = new PerguntaDAO();
 List<Pergunta> lista = pergDAO.listar();
 jogo.setPerguntaList(lista);
 session.setAttribute("jogo", jogo);
-Pergunta pergunta = jogo.getPerguntaList().get(0);
+Pergunta item = jogo.getPerguntaList().get(0);
 
+Jogador player = (Jogador)session.getAttribute("jogador");
 
 %>
 
@@ -31,32 +33,34 @@ Pergunta pergunta = jogo.getPerguntaList().get(0);
     </head>
     <body>
         <div class="pergunta">
-            <h4 class="enunciado">Quem foi o primeiro apresentador do SBT?</h4>
+             
+                    <h4 class="enunciado"><%=item.getEnunciado()%></h4>
             <div class="opcoes">
                 <form action="fim.jsp" method="post">
                     <input type="radio" value="A" name="rdoPergunta" />
-                    Silvio Santos<br/>
+                    <%=item.getA()%>
+                    <br/>
                     <input type="radio" value="B" name="rdoPergunta" />
-                    Carlos Alberto de Nogrega<br/>
+                    <%=item.getB()%> <br/>
                     <input type="radio" value="C" name="rdoPergunta" />
-                    Gugu<br/>
+                    <%=item.getC()%> <br/>
                     <input type="radio" value="D" name="rdoPergunta" />
-                    Roberto Bolaños<br/>
+                    <%=item.getD()%><br/>
                     <hr/>
                     <input type="submit" value="confirmar" />
-                     <input type="submit" value="pular" />(3)
+                     <input type="submit" value="pular" /> <%=jogo.getPulos()%>
                       <input type="submit" value="parar" />
                 </form>
             </div>
         </div>
         <div class="painelUsuario">
-            Siedler<br />
+            <%=player.getLogin()%>
+            <br />
             <%=jogo.getErro()%> errar <br />
-            1000 parar<br/>
-            2000 acertar<br/>
+            <%=jogo.getPontuacao()%> parar<br/>
             <%=jogo.getAcerto()%> acertar <br />
             
         </div>
-        
-    </body>
+          
+                        </body>
 </html>
