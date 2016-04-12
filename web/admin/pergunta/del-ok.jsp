@@ -1,20 +1,22 @@
 <%@page import="modelo.Pergunta"%>
 <%@page import="dao.PerguntaDAO"%>
-<%@include file="cabecalho-index.jsp"%>
-
+<%@include file="../cabecalho.jsp"%>
+<%@include file="../cabecalho.jsp"%>
 <%
     String msg = "";
-    if(request.getParameter("codigo")==null)
+    if(request.getParameter("id")==null)
     {
-        response.sendRedirect("item.jsp");
+        response.sendRedirect("list.jsp");
     }
     else
     {
-        String codigo = request.getParameter("codigo");
+        
+        Long id = Long.parseLong(request.getParameter("id")); 
         
         PerguntaDAO dao = new PerguntaDAO();
-        //buscar o registro pela chave primária
-        Pergunta obj = dao.buscarPorChavePrimaria(Long.parseLong(codigo));
+        
+        Pergunta obj = dao.buscarPorChavePrimaria(id);
+        
         if(obj!=null)
         {
             dao.excluir(obj);
@@ -26,17 +28,17 @@
         }
         
     }
+String id = request.getParameter("txtId");
 %>
 
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
     <div class="mdl-card mdl-cell mdl-cell--12-col">
         <div class="mdl-card__supporting-text ">
             <h4>Pergunta - Excluir</h4>
+            <%=msg%>.<br />
+            Id:<%=id%><br />
+            <a href="list.jsp"><i class="material-icons">list</i></a>
             
-            <div>
-             <%=msg%><br />
-             <a href="list.jsp">Voltar para Listagem</a>
-         </div>
         </div>
 
     </div>

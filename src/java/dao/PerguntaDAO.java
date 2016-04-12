@@ -40,12 +40,12 @@ public class PerguntaDAO {
     }
 
      public List<Pergunta> listar() throws Exception {
-        return em.createNamedQuery("Item.findAll").getResultList();
+        return em.createNamedQuery("Pergunta.findAll").getResultList();
     }
       public List<Pergunta> listar(String nome) throws Exception {
         //passar o parâmetro pra query
          TypedQuery<Pergunta> query = 
-                 em.createNamedQuery("Item.findByName", Pergunta.class);
+                 em.createNamedQuery("Pergunta.findByName", Pergunta.class);
          
          //Seto o parâmetro
          query.setParameter("nome", '%' + nome + '%');
@@ -83,8 +83,8 @@ public class PerguntaDAO {
     public void fechaEmf() {
         Conexao.closeConexao();
     }
-     public Pergunta buscarPorChavePrimaria(Long chave){
-        return em.find(Pergunta.class, chave);
+     public Pergunta buscarPorChavePrimaria(Long id){
+        return em.find(Pergunta.class, id);
     }
 
 }

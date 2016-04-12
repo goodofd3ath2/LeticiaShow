@@ -5,23 +5,21 @@
 <%@page import="dao.PerguntaDAO"%>
 <%@include file="../cabecalho.jsp"%>
 <%
-  if(request.getParameter("a") == null ||request.getParameter("nivel") == null ||request.getParameter("certa") == null ||request.getParameter("enunciado") == null ||request.getParameter("categoria") == null)
+    if(request.getParameter("id") == null)
     {
         response.sendRedirect("list.jsp");
         return;
     }
   
-    Long enunciado = Long.parseLong(request.getParameter("enunciado"));
+    Long id = Long.parseLong(request.getParameter("id"));
     PerguntaDAO dao = new PerguntaDAO();
-    Pergunta obj = dao.buscarPorChavePrimaria(enunciado);
+    Pergunta obj = dao.buscarPorChavePrimaria(id);
     //Achou a pergunta se não achou volta pra lista
     if(obj==null)
     {
-        response.sendRedirect("pergunta.jsp");
+        response.sendRedirect("list.jsp");
         return;
     }
-    
-    
     
 //Listagem de categorias
     CategoriaDAO cDAO = new CategoriaDAO();
@@ -33,20 +31,46 @@
         <div class="mdl-card__supporting-text">
             <h4>Pergunta - Atualizar</h4>
             <form action="upd-ok.jsp" method="post">
-                <!-- 
-                    primeira div -- área que ocupará o campo de formulário
-                    segunda div -- campo de texto e label 
-                -->
-                  <div class="mdl-cell--12-col"> 
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" required  id="txtNome" />
-                        <label class="mdl-textfield__label" for="txtPergunta">Pergunta</label>
-                    </div>
-                </div>
+                <%-- o readonly n permite ao usuario tocar nesse campo --%>
                 <div class="mdl-cell--12-col"> 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" required  id="txtNome" />
+                        <input class="mdl-textfield__input" type="text" name="txtId" value="<%=obj.getId()%>" readonly="readonly" required  id="txtNome" />
+                        <label class="mdl-textfield__label" for="txtId">Id</label>
+                    </div>
+                </div>
+                        
+                <div class="mdl-cell--12-col"> 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="txtEnunciado" value="<%=obj.getEnunciado()%>" required  id="txtNome" />
                         <label class="mdl-textfield__label" for="txtEnunciado">Enunciado</label>
+                    </div>
+                </div>
+                        
+                <div class="mdl-cell--12-col"> 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="txtA" value="<%=obj.getA()%>"  required  id="txtNome" />
+                        <label class="mdl-textfield__label" for="txtA">Resposta A</label>
+                    </div>
+                </div>
+                        
+                <div class="mdl-cell--12-col"> 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="txtB" value="<%=obj.getB()%>" required  id="txtNome" />
+                        <label class="mdl-textfield__label" for="txtB">Resposta B</label>
+                    </div>
+                </div>
+                
+                <div class="mdl-cell--12-col"> 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="txtC" value="<%=obj.getC()%>" required  id="txtNome" />
+                        <label class="mdl-textfield__label" for="txtC">Resposta B</label>
+                    </div>
+                </div>
+                
+                <div class="mdl-cell--12-col"> 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="txtD" value="<%=obj.getD()%>" required  id="txtNome" />
+                        <label class="mdl-textfield__label" for="txtD">Resposta D</label>
                     </div>
                 </div>
                 
@@ -55,23 +79,26 @@
                 -->
                 <div class="mdl-cell--12-col">
                     <div class="mdl-select mdl-js-select mdl-select--floating-label">
-                        <select class="mdl-select__input" id="selCategoria" name="selCategoria">
+                        <select class="mdl-select__input" id="selCategoria" name="selCategoria" >
                             <option value="">Selecione a resposta</option>
-                              <%                           
-                String selected = "";    
-                for (Categoria c : cLista) {
-                     if(c.getNome()== obj.getCategoria().getNome())
-                     {
-                         selected = "selected";
-                     }
-                %>
-                <option value="<%=c.getNome()%>" <%=selected%>><%=c%></option>
-                <%
-                    selected = "";
-                    }
-                %>
+                            <%
+                                //percorrer minha lista de cursos
+                                String selected = "";    
+                                for (Categoria c : cLista) 
+                                {
+                                    if(c.getId() == obj.getCategoria().getId())
+                                    {
+                                        selected = "selected";
+                                    }
+                            %>            
+                <option value="<%=c.getId()%>" <%=selected%>><%=c%></option>
+                            <%
+                                selected = "";
+                            }
+                            %>
+                            
                         </select>
-                        <label class="mdl-select__label" for="selCategoria">Exemplo Select</label>
+                       <label class="mdl-select__label" for="selCategoria">Exemplo Select</label>
                     </div>
                 </div>
                 <!-- 
@@ -79,17 +106,24 @@
                 -->
                 <div class="mdl-cell--12-col"> 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" required  id="txtNome" />
-                        <label class="mdl-textfield__label" for="txtAcerto">Acerto</label>
+                        <input class="mdl-textfield__input" type="text" name="txtCerta" value="<%=obj.getCerta()%>" required  />
+                        <label class="mdl-textfield__label" for="txtCerta">Certa</label>
                     </div>
                 </div>
+                
                 <div class="mdl-cell--12-col"> 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" required  id="txtNome" />
+                        <input class="mdl-textfield__input" type="text" name="txtNivel" value="<%=obj.getNivel()%>" required  />
                         <label class="mdl-textfield__label" for="txtNivel">Nível</label>
                     </div>
                 </div>
-               
+                <!-- 
+                    essa div será para o cadastro do ENUNCIADO da pergunta
+                -->
+                
+                <!-- 
+                    essa div será para o cadastro da CATEGORIA da pergunta
+                -->
                
                 <div class="mdl-cell--12-col">
                     

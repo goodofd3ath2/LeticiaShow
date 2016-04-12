@@ -69,16 +69,16 @@ else
                                 Atualizar 
                             -->
                             <div id="ttupd" class="icon material-icons">
-                                <i class="material-icons"><a href="upd.jsp">update</a></i>
+                                <i class="material-icons"><a href="upd.jsp?id=<%=item.getId()%>">update</a></i>
                             </div>
                             <div class="mdl-tooltip" for="ttupd">
                                 Atualizar
                             </div>
                             <!-- 
-                                Excluir 
+                                Excluir     
                             -->
                             <div id="ttdel" class="icon material-icons">
-                                <i class="material-icons"><a href="del-ok.jsp">delete</a></i>
+                                <i class="material-icons"><a href="del-ok.jsp?id=<%=item.getId()%>">delete</a></i>
                             </div>
                             <div class="mdl-tooltip" for="ttdel">
                                 Excluir
@@ -99,8 +99,6 @@ else
         </div>
 
     </div>
-
-
 
 <%@include file="../rodape.jsp"%>
 
