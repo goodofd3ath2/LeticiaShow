@@ -5,7 +5,13 @@
 <%@page import="modelo.Pergunta"%>
 <%@page import="modelo.Jogo"%>
 <%
-    Jogo jogo = new Jogo();
+    Jogo jogo;
+    if(session.getAttribute("jogo")!= null)
+    {
+        jogo = (Jogo)session.getAttribute("jogo");
+    }else {
+        jogo = new Jogo();
+    }
     /*
     *********QUANDO O JOGO COMEÇA
     -Inicialzar o meu jogo
@@ -14,11 +20,15 @@
     -Exibir a primeira pergunta na tela
      */
     if (request.getParameter("btnConfirmar") != null) {
+        String opcaomarcada = request.getParameter("rdoPergunta");
+        jogo.confirmar(opcaomarcada);
         out.print("Foi o confirmar");
     } else {
         if (request.getParameter("btnPular") != null) {
+            jogo.pular();
             out.print("Pular");
         } else if (request.getParameter("btnParar") != null) {
+            response.sendRedirect("fim.jsp");
             out.print("Parar");
         } else {
 

@@ -93,6 +93,7 @@ public class Jogo {
         if(this.pulos!=0)
         {
             this.pulos--;
+            this.getPerguntaList().remove(0);
             return true;
         }
         else
